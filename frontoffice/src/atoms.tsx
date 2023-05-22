@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 type PropsOf<T> = T extends React.FC<infer P> ? P : never;
 
@@ -109,9 +109,11 @@ export const Container = ({ children, ...props }: { children: any } & PropsOf<ty
     )
 };
 
-export const  Disabled = styled(Base)`
-    opacity: .5;
-    pointer-events: none;
+export const  Disabled = styled(Base)<{ disabled: boolean }>`
+    ${props => props.disabled && css`
+        opacity: .5;
+        pointer-events: none;
+    `};
 `;
 
 
@@ -126,7 +128,7 @@ export const Row = styled(Flex).attrs({
     w: '100%'
 })`
     &:nth-child(2n+1) {
-        background: #E4EAF5;
+        background: #f1f1f1;
     }
 `;
 
